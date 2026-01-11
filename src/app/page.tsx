@@ -72,12 +72,12 @@ const StatsCard = ({ title, value, icon, color }: StatsCardProps) => (
 );
 
 const STAGE_COLORS: Record<string, string> = {
-    QUALIFICATION: '#6366f1',
-    DISCOVERY: '#8b5cf6',
-    PROPOSAL: '#ec4899',
-    NEGOTIATION: '#f59e0b',
-    CLOSED_WON: '#10b981',
-    CLOSED_LOST: '#ef4444',
+    QUALIFICATION: '#5367FF',
+    DISCOVERY: '#00D09C',
+    PROPOSAL: '#F2994A',
+    NEGOTIATION: '#9B51E0',
+    CLOSED_WON: '#00D09C',
+    CLOSED_LOST: '#EB5757',
 };
 
 const formatCurrency = (value: number) => {
@@ -151,16 +151,16 @@ export default function Dashboard() {
                 {/* Stats Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
                     <Grid item xs={12} sm={6} md={3}>
-                        <StatsCard title="Total Contacts" value={stats?.totalContacts || 0} icon={<PeopleIcon />} color="#6366f1" />
+                        <StatsCard title="Total Contacts" value={stats?.totalContacts || 0} icon={<PeopleIcon />} color="#5367FF" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <StatsCard title="Total Companies" value={stats?.totalCompanies || 0} icon={<BusinessIcon />} color="#8b5cf6" />
+                        <StatsCard title="Total Companies" value={stats?.totalCompanies || 0} icon={<BusinessIcon />} color="#9B51E0" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <StatsCard title="Open Deals" value={stats?.openDeals || 0} icon={<DealsIcon />} color="#ec4899" />
+                        <StatsCard title="Open Deals" value={stats?.openDeals || 0} icon={<DealsIcon />} color="#F2994A" />
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <StatsCard title="Pipeline Value" value={formatCurrency(stats?.totalDealValue || 0)} icon={<MoneyIcon />} color="#10b981" />
+                        <StatsCard title="Pipeline Value" value={formatCurrency(stats?.totalDealValue || 0)} icon={<MoneyIcon />} color="#00D09C" />
                     </Grid>
                 </Grid>
 
@@ -231,8 +231,8 @@ export default function Dashboard() {
                                             <Bar dataKey="value" radius={[4, 4, 0, 0]} fill="url(#colorGradient)" />
                                             <defs>
                                                 <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                                                    <stop offset="0%" stopColor="#6366f1" />
-                                                    <stop offset="100%" stopColor="#8b5cf6" />
+                                                    <stop offset="0%" stopColor="#00D09C" />
+                                                    <stop offset="100%" stopColor="#00A87D" />
                                                 </linearGradient>
                                             </defs>
                                         </BarChart>

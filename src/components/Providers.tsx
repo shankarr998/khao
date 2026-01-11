@@ -1,9 +1,7 @@
 'use client';
 
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { theme } from '@/theme/theme';
+import { ThemeContextProvider } from '@/components/ThemeContext';
 import { AuthProvider } from '@/components/AuthContext';
 
 const client = new ApolloClient({
@@ -15,10 +13,9 @@ const client = new ApolloClient({
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
         <ApolloProvider client={client}>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
+            <ThemeContextProvider>
                 <AuthProvider>{children}</AuthProvider>
-            </ThemeProvider>
+            </ThemeContextProvider>
         </ApolloProvider>
     );
 }

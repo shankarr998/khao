@@ -22,6 +22,7 @@
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@mui/material-nextjs": "^5.15.4",
+    "@mui/styles": "^6.5.0",
     "@mui/x-data-grid": "^6.19.1",
     "bcryptjs": "^3.0.3",
     "graphql": "^16.8.1",

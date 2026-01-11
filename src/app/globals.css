@@ -8,30 +8,67 @@ html,
 body {
     height: 100%;
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+/* Light mode */
+html[data-theme='light'] body {
+    background: linear-gradient(135deg, #F5F5F5 0%, #ECECEC 50%, #F5F5F5 100%);
     background-attachment: fixed;
 }
 
-/* Custom scrollbar */
+/* Dark mode */
+html[data-theme='dark'] body {
+    background: linear-gradient(135deg, #0D0D11 0%, #141519 50%, #0D0D11 100%);
+    background-attachment: fixed;
+}
+
+/* Default dark mode fallback */
+body {
+    background: linear-gradient(135deg, #0D0D11 0%, #141519 50%, #0D0D11 100%);
+    background-attachment: fixed;
+}
+
+/* Custom scrollbar - Light mode */
+html[data-theme='light'] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-thumb {
+    background: rgba(0, 208, 156, 0.3);
+    border-radius: 4px;
+}
+
+html[data-theme='light'] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 208, 156, 0.5);
+}
+
+/* Custom scrollbar - Dark mode */
+html[data-theme='dark'] ::-webkit-scrollbar,
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
+html[data-theme='dark'] ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
 }
 
+html[data-theme='dark'] ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.3);
+    background: rgba(0, 208, 156, 0.3);
     border-radius: 4px;
 }
 
+html[data-theme='dark'] ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.5);
+    background: rgba(0, 208, 156, 0.5);
 }
 
 /* Animations */
@@ -49,4 +86,9 @@ body {
 
 .animate-fade-in {
     animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Theme transition for smooth switching */
+* {
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }

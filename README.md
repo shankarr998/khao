@@ -1,80 +1,113 @@
-# CRM Pro - Customer Relationship Management
+# CRM Pro
 
-A full-stack CRM application built with Next.js, Material-UI, GraphQL, and PostgreSQL (Neon DB).
+A modern, full-stack CRM application built with Next.js 14, GraphQL, and PostgreSQL.
 
-## Features
+![Dashboard Preview](https://via.placeholder.com/800x450?text=CRM+Pro+Dashboard)
 
-- **Dashboard** - Overview with metrics, charts, and pipeline visualization
-- **Contacts** - Manage individual contacts with status tracking
-- **Companies** - Track company accounts and relationships
-- **Deals** - Sales pipeline with stage management
-- **Activities** - Tasks, calls, emails, and meetings
+## 🚀 Tech Stack
 
-## Tech Stack
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **UI Component Library**: [Material-UI (MUI) v5](https://mui.com/)
+- **Styling**: `makeStyles` (MUI Styles)
+- **API**: [GraphQL](https://graphql.org/) (Apollo Server)
+- **Client State**: [Apollo Client](https://www.apollographql.com/docs/react/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/) (Neon DB)
+- **ORM/Query Builder**: `pg` (node-postgres)
+- **Authentication**: JWT & HTTP-Only Cookies
 
-- **Framework**: Next.js 14 (App Router)
-- **UI**: Material-UI v5 + Emotion
-- **GraphQL**: Apollo Client & Server
-- **Database**: PostgreSQL (Neon DB) with pg library
-- **Charts**: Recharts
+## ✨ Features
 
-## Setup
+- **📊 Dashboard**: Real-time sales metrics, charts, and activity summaries.
+- **🔐 Authentication**: Secure login/logout system with role-based access.
+- **👥 Contact Management**: View, add, and manage customer contacts.
+- **🏢 Company Management**: Track client companies and organizations.
+- **💰 Deal Pipeline**: Visualize and manage sales opportunities through stages.
+- **✅ Activity Tracking**: Tasks, calls, and meetings management.
+- **🌓 Dark/Light Mode**: Fully themable UI with toggle.
 
-### 1. Install Dependencies
+## 🛠️ Prerequisites
 
-```bash
-npm install
-```
+- Node.js 18+
+- PostgreSQL Database URL (Local or Remote like Neon)
 
-### 2. Configure Database
+## 🏃‍♂️ Getting Started
 
-Update `.env.local` with your Neon DB connection string:
+1.  **Clone the repository**
+    ```bash
+    git clone <repository-url>
+    cd crm-app
+    ```
 
-```env
-DATABASE_URL="postgresql://username:password@ep-xxx.us-east-2.aws.neon.tech/crm_db?sslmode=require"
-```
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-### 3. Initialize Database
+3.  **Environment Setup**
+    Create a `.env.local` file in the root directory:
+    ```env
+    DATABASE_URL=postgresql://user:password@host:port/dbname?sslmode=require
+    JWT_SECRET=your-super-secret-key-change-this
+    ```
 
-```bash
-npm run db:init    # Create tables
-npm run db:seed    # Add sample data (optional)
-```
+4.  **Database Initialization**
+    Initialize the schema and seed data:
+    ```bash
+    # Create tables (Base CRM + Users)
+    npm run db:init
+    npm run db:init-users
 
-### 4. Run Development Server
+    # Seed data
+    npm run db:seed
+    npm run db:seed-users
+    ```
 
-```bash
-npm run dev
-```
+5.  **Run Development Server**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Open [http://localhost:3000](http://localhost:3000)
+## 🔑 Demo Credentials
 
-## Project Structure
+The application comes pre-seeded with the following accounts:
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | `admin@crm.com` | `admin123` |
+| **User** | `sarah@crm.com` | `sarah123` |
+| **User** | `mike@crm.com` | `mike123` |
+| **Viewer** | `viewer@crm.com` | `viewer123` |
+
+## 📂 Project Structure
 
 ```
 src/
-├── app/                  # Next.js App Router pages
-│   ├── api/graphql/      # GraphQL API endpoint
-│   ├── contacts/         # Contacts page
-│   ├── companies/        # Companies page
-│   ├── deals/            # Deals page
-│   ├── activities/       # Activities page
-│   └── page.tsx          # Dashboard
-├── components/           # React components
-├── graphql/              # GraphQL schema & operations
-├── lib/db/               # Database connection & scripts
-└── theme/                # MUI theme configuration
+├── app/                # Next.js App Router pages
+│   ├── login/          # Login page
+│   ├── page.tsx        # Dashboard (Home)
+│   └── layout.tsx      # Root layout
+├── components/         # React components
+│   ├── AuthContext.tsx # Authentication provider
+│   ├── Sidebar.tsx     # Navigation sidebar
+│   └── ...
+├── graphql/            # GraphQL layer
+│   ├── schema.ts       # Type definitions
+│   ├── resolvers.ts    # API resolvers
+│   └── operations.ts   # Client-side operations
+└── lib/                # Utilities
+    ├── auth.ts         # Auth helpers (JWT, hashing)
+    └── db/             # Database connection & scripts
 ```
 
-## GraphQL API
+## 📜 Scripts
 
-Access the GraphQL playground at `/api/graphql`
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run db:init` | Initialize database schema |
-| `npm run db:seed` | Seed sample data |
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run start`: Start production server
+- `npm run lint`: Lint code
+- `npm run db:init`: Initialize base CRM tables
+- `npm run db:init-users`: Initialize users table
+- `npm run db:seed`: Seed CRM data
+- `npm run db:seed-users`: Seed user data

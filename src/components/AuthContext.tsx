@@ -25,27 +25,19 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [initialLoading, setInitialLoading] = useState(true);
     const client = useApolloClient();
 
     // Query to get current user
     const { data, loading: queryLoading, refetch } = useQuery(GET_ME, {
         fetchPolicy: 'network-only',
-        onCompleted: (data) => {
-            setUser(data?.me || null);
-            setLoading(false);
-        },
-        onError: () => {
-            setUser(null);
-            setLoading(false);
-        },
     });
 
     // Update user when query data changes
     useEffect(() => {
-        if (!queryLoading && data !== undefined) {
+        if (!queryLoading) {
             setUser(data?.me || null);
-            setLoading(false);
+            setInitialLoading(false);
         }
     }, [data, queryLoading]);
 
@@ -78,6 +70,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const result = await refetch();
         setUser(result.data?.me || null);
     }, [refetch]);
+
+    const loading = initialLoading || queryLoading;
 
     return (
         <AuthContext.Provider value={{ user, loading, login, logout, refetchUser }}>

@@ -7,8 +7,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'CRM Pro - Customer Relationship Management',
-    description: 'Manage your contacts, companies, deals, and activities',
+    title: 'Khao - Customer Relationship Management',
+    description: 'Simplify your sales with Khao CRM',
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
                 <AppRouterCacheProvider>
                     <Providers>{children}</Providers>
